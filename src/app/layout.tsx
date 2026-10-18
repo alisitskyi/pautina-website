@@ -4,11 +4,12 @@ import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-inter' });
+const inter = Inter({ subsets: ['latin', 'cyrillic'], variable: '--font-inter', display: 'swap' });
 const robotoCondensed = Roboto_Condensed({ 
   subsets: ['latin', 'cyrillic'], 
   weight: ['400', '700'],
-  variable: '--font-roboto-condensed' 
+  variable: '--font-roboto-condensed',
+  display: 'swap'
 });
 
 export const metadata: Metadata = {

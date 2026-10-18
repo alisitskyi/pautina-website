@@ -25,6 +25,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+export async function generateStaticParams() {
+  const quests = await api.quests.getAll();
+  return quests.map((quest) => ({
+    slug: quest.slug,
+  }));
+}
+
 export default async function QuestPage({ params }: Props) {
   const quest = await api.quests.getBySlug(params.slug);
 
