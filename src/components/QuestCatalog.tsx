@@ -92,7 +92,7 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
 
       {/* Quest Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredQuests.map((quest, index) => (
+        {filteredQuests.map((quest) => (
           <Link
             key={quest.id}
             href={`/room/${quest.slug}`}
@@ -166,13 +166,11 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
                 </div>
               </div>
 
-              {/* Option 1 Button: Preview on first 3 cards */}
-              {index < 3 && (
-                <div className="w-full mt-3.5 bg-brand-red group-hover:bg-red-700 text-white font-extrabold py-2.5 sm:py-3 rounded-xl text-xs uppercase tracking-wider text-center transition-all shadow-md shadow-brand-red/30 flex items-center justify-center gap-2 group-hover:brightness-110 active:scale-95">
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>Забронювати</span>
-                </div>
-              )}
+              {/* Booking CTA Button */}
+              <div className="w-full mt-3.5 bg-brand-red group-hover:bg-red-700 text-white font-extrabold py-2.5 sm:py-3 rounded-xl text-xs uppercase tracking-wider text-center transition-all shadow-md shadow-brand-red/30 flex items-center justify-center gap-2 group-hover:brightness-110 active:scale-95">
+                <Calendar className="w-3.5 h-3.5" />
+                <span>Забронювати</span>
+              </div>
             </div>
           </Link>
         ))}
