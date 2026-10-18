@@ -18,7 +18,7 @@ export default async function HomePage() {
         <div 
           className="absolute inset-0 bg-cover bg-center scale-105 transform animate-pulse duration-1000"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1920&q=80')`,
+            backgroundImage: `url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1920&q=80')`,
             animationDuration: '10s'
           }} 
         />
@@ -141,7 +141,7 @@ export default async function HomePage() {
             </div>
             <div className="relative h-[360px] md:h-[420px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=80"
+                src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?auto=format&fit=crop&w=1000&q=80"
                 alt="Дні народження в PAUTINA Rooms"
                 fill
                 className="object-cover"
