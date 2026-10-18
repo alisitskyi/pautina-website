@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Quest } from '@/types';
-import { Users, Clock, MapPin, Sparkles } from 'lucide-react';
+import { Users, Clock, MapPin, Sparkles, SlidersHorizontal } from 'lucide-react';
 
 interface QuestCatalogProps {
   initialQuests: Quest[];
@@ -12,23 +12,33 @@ interface QuestCatalogProps {
 
 export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('Всі');
-  const [selectedLocation, setSelectedLocation] = useState<string>('Всі локації');
+  const [selectedArea, setSelectedArea] = useState<string>('Всі райони');
+  const [searchQuery, setSearchQuery] = useState<string>('');
 
   const categories = ['Всі', 'Хоррор', 'Містика', 'Фентезі', 'Детектив', 'Для дітей', 'Пригоди'];
-  const locations = ['Всі локації', 'вул. Торгова, 2', 'пр-т Шевченка, 4д'];
+  const areas = ['Всі райони', 'Центр', 'Приморський'];
 
   const filteredQuests = initialQuests.filter((quest) => {
     const matchesCategory =
       selectedCategory === 'Всі' || quest.categories.includes(selectedCategory);
-    const matchesLocation =
-      selectedLocation === 'Всі локації' || quest.location.address.includes(selectedLocation.replace('вул. ', '').replace('пр-т ', ''));
-    return matchesCategory && matchesLocation;
+    
+    const matchesArea =
+      selectedArea === 'Всі райони' ||
+      quest.location.area === selectedArea ||
+      quest.location.address.toLowerCase().includes(selectedArea.toLowerCase());
+
+    const matchesSearch =
+      !searchQuery.trim() ||
+      quest.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      quest.description.toLowerCase().includes(searchQuery.toLowerCase());
+
+    return matchesCategory && matchesArea && matchesSearch;
   });
 
   return (
     <div>
       {/* Category & Location Filters */}
-      <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-12">
+      <div className="flex flex-col gap-6 mb-12">
         {/* Category Pills */}
         <div className="flex flex-wrap justify-center gap-2">
           {categories.map((cat) => (
@@ -46,20 +56,37 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
           ))}
         </div>
 
-        {/* Location Select */}
-        <div className="flex items-center gap-2 bg-white/5 border border-white/10 rounded-lg px-3 py-1.5 text-xs text-gray-300">
-          <MapPin className="w-3.5 h-3.5 text-brand-red" />
-          <select
-            value={selectedLocation}
-            onChange={(e) => setSelectedLocation(e.target.value)}
-            className="bg-transparent text-white outline-none cursor-pointer"
-          >
-            {locations.map((loc) => (
-              <option key={loc} value={loc} className="bg-brand-dark text-white">
-                {loc}
-              </option>
-            ))}
-          </select>
+        {/* Search & Area Filter Bar */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 bg-neutral-900/60 p-3 rounded-2xl border border-white/10 max-w-4xl mx-auto w-full">
+          {/* Search input */}
+          <input
+            type="text"
+            placeholder="Шукати квест за назвою..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full sm:w-auto flex-1 bg-black/50 border border-white/10 rounded-xl px-4 py-2 text-xs text-white outline-none focus:border-brand-red"
+          />
+
+          <div className="flex items-center gap-3 w-full sm:w-auto justify-between sm:justify-end">
+            <div className="flex items-center gap-2 bg-black/50 border border-white/10 rounded-xl px-3 py-2 text-xs text-gray-300">
+              <MapPin className="w-3.5 h-3.5 text-brand-red shrink-0" />
+              <select
+                value={selectedArea}
+                onChange={(e) => setSelectedArea(e.target.value)}
+                className="bg-transparent text-white outline-none cursor-pointer"
+              >
+                {areas.map((loc) => (
+                  <option key={loc} value={loc} className="bg-brand-dark text-white">
+                    {loc}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <span className="text-xs text-gray-400 font-mono whitespace-nowrap">
+              {filteredQuests.length} {filteredQuests.length === 1 ? 'квест' : 'квестів'}
+            </span>
+          </div>
         </div>
       </div>
 
@@ -69,7 +96,7 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
           <Link
             key={quest.id}
             href={`/room/${quest.slug}`}
-            className="group relative h-[440px] overflow-hidden rounded-2xl border border-white/10 hover:border-brand-red/60 transition-all duration-300 shadow-2xl flex flex-col justify-end bg-brand-gray/30"
+            className="group relative h-[450px] overflow-hidden rounded-2xl border border-white/10 hover:border-brand-red/60 transition-all duration-300 shadow-2xl flex flex-col justify-end bg-brand-gray/30"
           >
             {/* Background Image */}
             <Image
@@ -80,12 +107,12 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
 
             {/* Top Badges */}
             <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
               <div className="flex flex-wrap gap-1.5">
-                {quest.categories.map((cat) => (
+                {quest.categories.slice(0, 2).map((cat) => (
                   <span
                     key={cat}
                     className="text-[10px] uppercase font-extrabold bg-brand-red text-white px-2.5 py-1 rounded-md tracking-wider shadow"
@@ -110,7 +137,7 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
               </p>
 
               {/* Specs Bar */}
-              <div className="grid grid-cols-3 gap-2 py-3 border-t border-b border-white/10 text-xs text-gray-300 mb-4 bg-black/30 backdrop-blur-sm rounded-lg px-2">
+              <div className="grid grid-cols-3 gap-2 py-3 border-t border-b border-white/10 text-xs text-gray-300 mb-4 bg-black/40 backdrop-blur-sm rounded-lg px-2">
                 <div className="flex items-center gap-1.5 justify-center">
                   <Users className="w-3.5 h-3.5 text-brand-red" />
                   <span>{quest.players.min}-{quest.players.max} ос.</span>
@@ -127,11 +154,11 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
 
               {/* Bottom Row */}
               <div className="flex justify-between items-center">
-                <div className="flex items-center gap-1.5 text-xs text-gray-400">
-                  <MapPin className="w-3.5 h-3.5 text-gray-400" />
-                  <span>{quest.location.address}</span>
+                <div className="flex items-center gap-1.5 text-xs text-gray-400 truncate max-w-[65%]">
+                  <MapPin className="w-3.5 h-3.5 text-gray-400 shrink-0" />
+                  <span className="truncate">{quest.location.address}</span>
                 </div>
-                <div className="text-right">
+                <div className="text-right shrink-0">
                   <span className="text-[10px] text-gray-400 block uppercase">від</span>
                   <span className="text-base font-extrabold text-white">
                     {quest.price.min} <span className="text-xs font-normal text-gray-400">грн</span>
@@ -149,7 +176,8 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
           <button
             onClick={() => {
               setSelectedCategory('Всі');
-              setSelectedLocation('Всі локації');
+              setSelectedArea('Всі райони');
+              setSearchQuery('');
             }}
             className="mt-4 text-brand-red hover:underline text-sm font-semibold"
           >
