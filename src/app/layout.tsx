@@ -74,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="uk" className="bg-brand-dark text-white">
+    <html lang="uk" className="bg-brand-dark text-white scroll-smooth">
       <head>
         <script
           type="application/ld+json"

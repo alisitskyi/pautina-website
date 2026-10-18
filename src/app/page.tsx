@@ -40,19 +40,19 @@ export default async function HomePage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link 
+            <a 
               href="#quests" 
-              className="w-full sm:w-auto bg-brand-red hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest transition-all shadow-xl shadow-brand-red/30 active:scale-95 text-center flex items-center justify-center gap-2"
+              className="w-full sm:w-auto bg-brand-red hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest transition-all shadow-xl shadow-brand-red/30 active:scale-95 text-center flex items-center justify-center gap-2 cursor-pointer"
             >
               <span>Вибрати квест</span>
               <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link 
+            </a>
+            <a 
               href="/birthday" 
-              className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md px-8 py-4 rounded-xl font-bold uppercase tracking-widest transition-all text-center"
+              className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md px-8 py-4 rounded-xl font-bold uppercase tracking-widest transition-all text-center cursor-pointer"
             >
               Дні народження
-            </Link>
+            </a>
           </div>
 
           {/* Quick Stats */}
@@ -78,7 +78,7 @@ export default async function HomePage() {
       </section>
 
       {/* Quests Catalog Section */}
-      <section id="quests" className="py-24 bg-brand-dark border-t border-white/5 scroll-mt-10">
+      <section id="quests" className="py-24 bg-brand-dark border-t border-white/5 scroll-mt-20">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-brand-red text-xs uppercase font-extrabold tracking-widest block mb-2">Каталог пригод</span>
@@ -124,12 +124,12 @@ export default async function HomePage() {
                 </li>
               </ul>
               <div className="flex flex-wrap gap-4">
-                <Link
+                <a
                   href="/birthday"
-                  className="bg-brand-red hover:bg-red-700 text-white px-7 py-3.5 rounded-xl font-bold uppercase text-xs tracking-wider transition-all"
+                  className="bg-brand-red hover:bg-red-700 text-white px-7 py-3.5 rounded-xl font-bold uppercase text-xs tracking-wider transition-all cursor-pointer"
                 >
                   Дізнатися деталі та ціни
-                </Link>
+                </a>
                 <a
                   href="tel:+380931701444"
                   className="border border-white/20 hover:border-white text-white px-7 py-3.5 rounded-xl font-bold uppercase text-xs tracking-wider transition-all flex items-center gap-2"
@@ -167,12 +167,12 @@ export default async function HomePage() {
                 Даруйте емоції замість речей! Електронні та преміальні пластикові сертифікати діють на будь-який квест мережі протягом 6 місяців.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Link
+                <a
                   href="/certificates"
-                  className="bg-brand-gold hover:bg-amber-600 text-black font-extrabold px-8 py-3.5 rounded-xl text-xs uppercase tracking-wider transition-all"
+                  className="bg-brand-gold hover:bg-amber-600 text-black font-extrabold px-8 py-3.5 rounded-xl text-xs uppercase tracking-wider transition-all cursor-pointer"
                 >
                   Замовити сертифікат
-                </Link>
+                </a>
               </div>
             </div>
           </div>

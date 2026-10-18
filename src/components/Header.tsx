@@ -19,24 +19,24 @@ export default function Header() {
 
         {/* Desktop Navigation (visible on xl screens: >= 1280px to guarantee no squishing) */}
         <nav className="hidden xl:flex items-center space-x-6 2xl:space-x-8 text-xs font-accent uppercase tracking-wider text-gray-300 font-semibold shrink-0">
-          <Link href="/#quests" className="hover:text-brand-red transition-colors whitespace-nowrap py-1">
+          <a href="/#quests" className="hover:text-brand-red transition-colors whitespace-nowrap py-1 cursor-pointer">
             Квести
-          </Link>
-          <Link href="/locations" className="hover:text-brand-red transition-colors whitespace-nowrap py-1">
+          </a>
+          <a href="/locations" className="hover:text-brand-red transition-colors whitespace-nowrap py-1 cursor-pointer">
             Локації
-          </Link>
-          <Link href="/birthday" className="hover:text-brand-red transition-colors whitespace-nowrap py-1">
+          </a>
+          <a href="/birthday" className="hover:text-brand-red transition-colors whitespace-nowrap py-1 cursor-pointer">
             Дні народження
-          </Link>
-          <Link href="/certificates" className="hover:text-brand-red transition-colors whitespace-nowrap py-1">
+          </a>
+          <a href="/certificates" className="hover:text-brand-red transition-colors whitespace-nowrap py-1 cursor-pointer">
             Сертифікати
-          </Link>
-          <Link href="/faq" className="hover:text-brand-red transition-colors whitespace-nowrap py-1">
+          </a>
+          <a href="/faq" className="hover:text-brand-red transition-colors whitespace-nowrap py-1 cursor-pointer">
             FAQ
-          </Link>
-          <Link href="/contacts" className="hover:text-brand-red transition-colors whitespace-nowrap py-1">
+          </a>
+          <a href="/contacts" className="hover:text-brand-red transition-colors whitespace-nowrap py-1 cursor-pointer">
             Контакти
-          </Link>
+          </a>
         </nav>
 
         {/* Desktop / Tablet Actions */}
@@ -60,13 +60,13 @@ export default function Header() {
           </a>
 
           {/* Booking CTA button */}
-          <Link
+          <a
             href="/#quests" 
-            className="flex items-center gap-2 bg-brand-red hover:bg-red-700 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg text-[11px] sm:text-xs uppercase font-extrabold tracking-wider transition-all shadow-md shadow-brand-red/20 active:scale-95 whitespace-nowrap shrink-0"
+            className="flex items-center gap-2 bg-brand-red hover:bg-red-700 text-white px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg text-[11px] sm:text-xs uppercase font-extrabold tracking-wider transition-all shadow-md shadow-brand-red/20 active:scale-95 whitespace-nowrap shrink-0 cursor-pointer"
           >
             <Calendar className="w-3.5 h-3.5 shrink-0" />
             <span>Бронювати</span>
-          </Link>
+          </a>
 
           {/* Hamburger Button for screens < xl */}
           <button
@@ -83,14 +83,14 @@ export default function Header() {
       {isOpen && (
         <div className="xl:hidden bg-neutral-950/98 border-b border-white/10 px-6 py-6 transition-all duration-300 animate-in fade-in slide-in-from-top-4 backdrop-blur-xl">
           <nav className="flex flex-col space-y-3.5 text-sm font-accent uppercase tracking-wider font-semibold">
-            <Link 
+            <a 
               href="/#quests" 
               onClick={() => setIsOpen(false)}
-              className="py-2 border-b border-white/5 hover:text-brand-red transition-colors flex items-center justify-between"
+              className="py-2 border-b border-white/5 hover:text-brand-red transition-colors flex items-center justify-between cursor-pointer"
             >
               <span>🎯 Всі квести</span>
-              <span className="text-xs text-gray-500">6 квестів</span>
-            </Link>
+              <span className="text-xs text-gray-500">39 квестів</span>
+            </a>
             <Link 
               href="/locations" 
               onClick={() => setIsOpen(false)}
