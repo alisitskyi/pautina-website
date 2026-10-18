@@ -58,12 +58,30 @@ export default function BookingSection({ quest, initialSlots }: BookingSectionPr
     setError(null);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      const bookingId = `PR-${Math.floor(100000 + Math.random() * 900000)}`;
-      setBookingSuccess(bookingId);
+      const response = await fetch('/api/booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          questId: quest.id,
+          date: selectedDate,
+          time: selectedSlot.time,
+          name: name.trim(),
+          phone: cleanedPhone,
+          playersCount: playerCount,
+          comment: comment.trim(),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        setError(data.error || 'Помилка бронювання. Спробуйте ще раз або зателефонуйте нам.');
+        return;
+      }
+
+      setBookingSuccess(data.data.bookingId);
     } catch (err) {
-      setError('Помилка бронювання. Спробуйте ще раз або зателефонуйте нам.');
+      setError('Помилка з’єднання. Перевірте інтернет або зателефонуйте нам.');
     } finally {
       setIsSubmitting(false);
     }
