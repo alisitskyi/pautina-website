@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Quest } from '@/types';
-import { Users, Clock, MapPin, Sparkles, SlidersHorizontal } from 'lucide-react';
+import { Users, Clock, MapPin, Sparkles, Calendar } from 'lucide-react';
 
 interface QuestCatalogProps {
   initialQuests: Quest[];
@@ -92,11 +92,11 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
 
       {/* Quest Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredQuests.map((quest) => (
+        {filteredQuests.map((quest, index) => (
           <Link
             key={quest.id}
             href={`/room/${quest.slug}`}
-            className="group relative h-[450px] overflow-hidden rounded-2xl border border-white/10 hover:border-brand-red/60 transition-all duration-300 shadow-2xl flex flex-col justify-end bg-brand-gray/30"
+            className="group relative min-h-[480px] overflow-hidden rounded-2xl border border-white/10 hover:border-brand-red/60 transition-all duration-300 shadow-2xl flex flex-col justify-end bg-brand-gray/30"
           >
             {/* Background Image */}
             <Image
@@ -165,6 +165,14 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
                   </span>
                 </div>
               </div>
+
+              {/* Option 1 Button: Preview on first 3 cards */}
+              {index < 3 && (
+                <div className="w-full mt-3.5 bg-brand-red group-hover:bg-red-700 text-white font-extrabold py-2.5 sm:py-3 rounded-xl text-xs uppercase tracking-wider text-center transition-all shadow-md shadow-brand-red/30 flex items-center justify-center gap-2 group-hover:brightness-110 active:scale-95">
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span>Забронювати</span>
+                </div>
+              )}
             </div>
           </Link>
         ))}
