@@ -1,5 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // @ts-ignore
+  allowedDevOrigins: [
+    'fundamentals-differences-absence-merit.trycloudflare.com',
+    '*.trycloudflare.com',
+    'localhost:3000',
+  ],
   images: {
     remotePatterns: [
       {

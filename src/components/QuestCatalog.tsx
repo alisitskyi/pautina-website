@@ -93,10 +93,10 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
       {/* Quest Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredQuests.map((quest) => (
-          <Link
+          <a
             key={quest.id}
             href={`/room/${quest.slug}`}
-            className="group relative min-h-[480px] overflow-hidden rounded-2xl border border-white/10 hover:border-brand-red/60 transition-all duration-300 shadow-2xl flex flex-col justify-end bg-brand-gray/30"
+            className="group relative min-h-[480px] overflow-hidden rounded-2xl border border-white/10 hover:border-brand-red/60 transition-all duration-300 shadow-2xl flex flex-col justify-end bg-brand-gray/30 cursor-pointer block"
           >
             {/* Background Image */}
             <Image
@@ -104,13 +104,13 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
               alt={quest.title}
               fill
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
             />
             {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-90 group-hover:opacity-95 transition-opacity" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-90 group-hover:opacity-95 transition-opacity pointer-events-none" />
 
             {/* Top Badges */}
-            <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10">
+            <div className="absolute top-4 left-4 right-4 flex justify-between items-start z-10 pointer-events-none">
               <div className="flex flex-wrap gap-1.5">
                 {quest.categories.slice(0, 2).map((cat) => (
                   <span
@@ -128,7 +128,7 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
             </div>
 
             {/* Card Content */}
-            <div className="relative z-10 p-6 w-full">
+            <div className="relative z-10 p-6 w-full pointer-events-none">
               <h3 className="text-2xl font-extrabold mb-2 text-white group-hover:text-brand-red transition-colors font-accent tracking-wide line-clamp-1">
                 {quest.title}
               </h3>
@@ -172,7 +172,7 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
                 <span>Забронювати</span>
               </div>
             </div>
-          </Link>
+          </a>
         ))}
       </div>
 
