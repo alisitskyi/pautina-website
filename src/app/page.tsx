@@ -11,15 +11,15 @@ export default async function HomePage() {
     <div className="flex flex-col bg-brand-dark min-h-screen text-white">
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Background dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-brand-dark z-10" />
+        {/* Dark radial glow and gradient */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-red/15 via-black/70 to-brand-dark z-10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-brand-dark z-10" />
         
         {/* Background Image */}
         <div 
-          className="absolute inset-0 bg-cover bg-center scale-105 transform animate-pulse duration-1000"
+          className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity scale-105"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=1920&q=80')`,
-            animationDuration: '10s'
+            backgroundImage: `url('https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?auto=format&fit=crop&w=1920&q=80')`,
           }} 
         />
         
