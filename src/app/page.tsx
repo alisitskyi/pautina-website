@@ -19,24 +19,15 @@ export default async function HomePage() {
           </div>
 
           {/* Description Paragraph */}
-          <p className="text-gray-300 text-xs sm:text-sm md:text-[14px] leading-relaxed tracking-wide font-normal max-w-4xl mx-auto mb-8 sm:mb-10">
-            Антуражні та атмосферні квест кімнати від PAUTINArooms! Більш 30 різноманітних квестів на різні сюжети:{' '}
-            <span className="font-semibold text-white">МІСТИКА</span>,{' '}
-            <span className="font-semibold text-white">ДЕТЕКТИВ</span>,{' '}
-            <span className="font-semibold text-white">ХОРРОР</span>,{' '}
-            <span className="font-semibold text-white">ПРИГОДИ</span>,{' '}
-            <span className="font-semibold text-white">ФАНТАСТИКА</span>,{' '}
-            <span className="font-semibold text-white">КВЕСТ ПРОГРАМИ на День народження</span>
+          <p className="text-gray-300 text-xs sm:text-sm md:text-[14px] leading-relaxed tracking-wide font-normal max-w-3xl mx-auto mb-6 sm:mb-8">
+            Антуражні та атмосферні квест кімнати від PAUTINArooms! Більш 30 різноманітних квестів на різні сюжети.
           </p>
 
-          {/* Signature Title: КВЕСТИ with Gold Underline Bar */}
-          <div className="mb-8 sm:mb-10">
-            <div className="inline-block relative">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-widest uppercase">
-                КВЕСТИ
-              </h1>
-              <div className="h-[2px] bg-[#fbefab] shadow-[0_0_12px_rgba(251,239,171,0.8)] mt-3 mx-auto w-full min-w-[260px] sm:min-w-[420px]" />
-            </div>
+          {/* Title: КВЕСТИ */}
+          <div className="mb-6 sm:mb-8">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-widest uppercase">
+              КВЕСТИ
+            </h1>
           </div>
         </div>
       </section>
