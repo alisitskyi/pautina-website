@@ -12,6 +12,24 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 shadow-2xl">
+      {/* ================= PREVIEW BANNER ================= */}
+      <div className="bg-[#141414] border-b border-[#fb7b04]/50 py-2 px-4 text-center text-xs shadow-md">
+        <div className="container mx-auto flex items-center justify-center gap-2.5 flex-wrap">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#fb7b04] text-white text-[10px] font-black uppercase tracking-wider shadow-sm">
+            ⭐ Варіант 3 (Вектор)
+          </span>
+          <span className="font-semibold text-gray-200">
+            Векторну павутину з файлу <code className="text-[#fbefab] font-mono font-bold">Vector pautina.svg</code> додано до прев&apos;ю!
+          </span>
+          <Link 
+            href="/preview-patterns" 
+            className="inline-flex items-center gap-1 bg-[#fb7b04]/20 hover:bg-[#fb7b04] border border-[#fb7b04]/60 text-white font-bold px-3 py-0.5 rounded-lg text-[11px] transition-all hover:scale-105 ml-1"
+          >
+            Відкрити прев&apos;ю фонів →
+          </Link>
+        </div>
+      </div>
+
       {/* ================= TIER 1: Top Bar (Authentic Pautina) ================= */}
       <div className="bg-[#000000] border-b border-white/5 py-2.5 px-4 sm:px-6">
         <div className="container mx-auto flex justify-between items-center gap-4 max-w-7xl">

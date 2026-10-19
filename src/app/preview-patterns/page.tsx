@@ -7,8 +7,8 @@ import { Users, Clock, Sparkles, MapPin, Calendar, ArrowRight } from 'lucide-rea
 
 export default function PreviewPatternsPage() {
   const [selectedPattern, setSelectedPattern] = useState<'1' | '2' | '3' | 'split'>('3');
-  const [opacity, setOpacity] = useState<number>(30);
-  const [scale, setScale] = useState<number>(650);
+  const [opacity, setOpacity] = useState<number>(45);
+  const [scale, setScale] = useState<number>(550);
   const [blendMode, setBlendMode] = useState<'screen' | 'normal'>('screen');
 
   const getPatternUrl = (id: '1' | '2' | '3') => {
@@ -154,7 +154,7 @@ export default function PreviewPatternsPage() {
             backgroundSize: `${scale}px`,
             backgroundRepeat: 'repeat',
             opacity: opacity / 100,
-            mixBlendMode: blendMode,
+            mixBlendMode: selectedPattern === '3' ? 'normal' : blendMode,
           }}
         />
       )}
