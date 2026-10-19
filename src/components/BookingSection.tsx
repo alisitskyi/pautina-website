@@ -192,7 +192,7 @@ export default function BookingSection({ quest, initialSlots }: BookingSectionPr
                     setIsModalOpen(false);
                     setBookingSuccess(null);
                   }}
-                  className="w-full bg-brand-red hover:bg-red-700 text-white font-bold py-3 rounded-xl uppercase text-xs tracking-wider"
+                  className="w-full bg-brand-red hover:bg-[#e06d02] text-white font-bold py-3 rounded-xl uppercase text-xs tracking-wider"
                 >
                   Зрозуміло, дякую!
                 </button>

@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         brand: {
           dark: '#121212',
-          red: '#b3181d',
+          red: '#fb7b04',
           gold: '#c5a059',
           gray: '#2a2a2a',
         },

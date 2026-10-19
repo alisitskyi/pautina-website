@@ -137,7 +137,7 @@ export default function ContactsPage() {
             />
             <button
               type="submit"
-              className="w-full bg-brand-red hover:bg-red-700 text-white font-bold py-3.5 rounded-xl uppercase text-xs tracking-wider transition-all flex items-center justify-center gap-2"
+              className="w-full bg-brand-red hover:bg-[#e06d02] text-white font-bold py-3.5 rounded-xl uppercase text-xs tracking-wider transition-all flex items-center justify-center gap-2"
             >
               <Send className="w-4 h-4" />
               <span>Надіслати повідомлення</span>

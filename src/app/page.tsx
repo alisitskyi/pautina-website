@@ -70,7 +70,7 @@ export default async function HomePage() {
               <div className="flex flex-wrap gap-4">
                 <a
                   href="/birthday"
-                  className="bg-brand-red hover:bg-red-700 text-white px-7 py-3.5 rounded-xl font-bold uppercase text-xs tracking-wider transition-all cursor-pointer"
+                  className="bg-brand-red hover:bg-[#e06d02] text-white px-7 py-3.5 rounded-xl font-bold uppercase text-xs tracking-wider transition-all cursor-pointer"
                 >
                   Дізнатися деталі та ціни
                 </a>

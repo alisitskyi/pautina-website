@@ -97,7 +97,7 @@ export default function CertificatesPage() {
               </p>
               <button 
                 onClick={() => setIsSuccess(false)}
-                className="bg-brand-red hover:bg-red-700 text-white px-8 py-3 rounded-xl uppercase text-xs font-bold tracking-wider"
+                className="bg-brand-red hover:bg-[#e06d02] text-white px-8 py-3 rounded-xl uppercase text-xs font-bold tracking-wider"
               >
                 Оформити ще один
               </button>
@@ -207,7 +207,7 @@ export default function CertificatesPage() {
                 </div>
                 <button
                   type="submit"
-                  className="w-full sm:w-auto bg-brand-red hover:bg-red-700 text-white font-bold px-10 py-3.5 rounded-xl uppercase text-xs tracking-wider transition-all"
+                  className="w-full sm:w-auto bg-brand-red hover:bg-[#e06d02] text-white font-bold px-10 py-3.5 rounded-xl uppercase text-xs tracking-wider transition-all"
                 >
                   Замовити сертифікат
                 </button>

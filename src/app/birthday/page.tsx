@@ -142,7 +142,7 @@ export default function BirthdayPage() {
 
                 <a 
                   href="tel:+380931701444" 
-                  className="w-full bg-brand-red hover:bg-red-700 text-white font-bold py-3.5 rounded-xl text-center uppercase text-xs tracking-wider transition-all block"
+                  className="w-full bg-brand-red hover:bg-[#e06d02] text-white font-bold py-3.5 rounded-xl text-center uppercase text-xs tracking-wider transition-all block"
                 >
                   {pkg.cta}
                 </a>
@@ -162,7 +162,7 @@ export default function BirthdayPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="tel:+380931701444" 
-              className="bg-brand-red hover:bg-red-700 text-white px-8 py-3.5 rounded-xl font-bold uppercase text-xs tracking-wider flex items-center justify-center gap-2"
+              className="bg-brand-red hover:bg-[#e06d02] text-white px-8 py-3.5 rounded-xl font-bold uppercase text-xs tracking-wider flex items-center justify-center gap-2"
             >
               <Phone className="w-4 h-4" />
               <span>+38 (093) 170-14-44</span>

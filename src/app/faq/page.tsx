@@ -101,7 +101,7 @@ export default function FAQPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
               href="tel:+380931701444" 
-              className="bg-brand-red hover:bg-red-700 text-white font-bold px-8 py-3 rounded-xl uppercase text-xs tracking-wider flex items-center justify-center gap-2"
+              className="bg-brand-red hover:bg-[#e06d02] text-white font-bold px-8 py-3 rounded-xl uppercase text-xs tracking-wider flex items-center justify-center gap-2"
             >
               <Phone className="w-4 h-4" />
               <span>+38 (093) 170-14-44</span>
