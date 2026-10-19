@@ -303,7 +303,7 @@ export default function BookingSection({ quest, initialSlots }: BookingSectionPr
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full mt-2 bg-brand-red hover:bg-red-700 text-white font-bold py-3.5 rounded-xl uppercase text-xs tracking-wider transition-all disabled:opacity-50"
+                    className="w-full mt-2 bg-[#fb7b04] hover:bg-[#e06d02] text-white font-bold py-3.5 rounded-xl uppercase text-xs tracking-wider transition-all shadow-md shadow-[#fb7b04]/30 disabled:opacity-50"
                   >
                     {isSubmitting ? 'Бронюємо...' : 'Підтвердити бронювання'}
                   </button>

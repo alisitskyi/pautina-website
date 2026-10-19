@@ -47,7 +47,7 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
               onClick={() => setSelectedCategory(cat)}
               className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
                 selectedCategory === cat
-                  ? 'bg-[#b3181d] text-white shadow-lg shadow-[#b3181d]/30 scale-105'
+                  ? 'bg-[#fb7b04] text-white shadow-lg shadow-[#fb7b04]/30 scale-105'
                   : 'bg-neutral-900/90 text-gray-300 hover:text-white hover:bg-neutral-800 border border-white/10'
               }`}
             >
@@ -187,7 +187,7 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
               </div>
 
               {/* Booking CTA Button (Option 1) */}
-              <div className="w-full bg-[#b3181d] group-hover:bg-[#cc2929] text-white font-extrabold py-2.5 sm:py-3 rounded-lg text-xs uppercase tracking-wider text-center transition-all shadow-md shadow-[#b3181d]/30 flex items-center justify-center gap-2 group-hover:shadow-[0_0_15px_rgba(204,41,41,0.5)] active:scale-95">
+              <div className="w-full bg-[#fb7b04] group-hover:bg-[#e06d02] text-white font-extrabold py-2.5 sm:py-3 rounded-lg text-xs uppercase tracking-wider text-center transition-all shadow-md shadow-[#fb7b04]/30 flex items-center justify-center gap-2 group-hover:shadow-[0_0_18px_rgba(251,123,4,0.5)] active:scale-95">
                 <Calendar className="w-3.5 h-3.5" />
                 <span>Забронювати</span>
               </div>
@@ -205,7 +205,7 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
               setSelectedArea('Всі райони');
               setSearchQuery('');
             }}
-            className="mt-4 text-brand-red hover:underline text-sm font-semibold"
+            className="mt-4 text-[#fb7b04] hover:underline text-sm font-semibold"
           >
             Скинути фільтри
           </button>
