@@ -69,6 +69,8 @@ const jsonLd = {
   },
 };
 
+import { LanguageProvider } from '@/context/LanguageContext';
+
 export default function RootLayout({
   children,
 }: {
@@ -83,11 +85,13 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${robotoCondensed.variable} font-sans antialiased`}>
-        <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

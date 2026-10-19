@@ -2,10 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Phone, Facebook, Instagram, Calendar } from 'lucide-react';
+import { Menu, X, Phone, Facebook, Instagram } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { lang, setLang, t } = useLanguage();
+  const nav = t('nav');
 
   return (
     <header className="sticky top-0 z-50 shadow-2xl">
@@ -41,8 +44,36 @@ export default function Header() {
             </div>
           </div>
 
-          {/* Right: Social icons & Mobile Call */}
-          <div className="flex items-center gap-3 shrink-0">
+          {/* Right: Language Switcher, Social icons & Mobile Call */}
+          <div className="flex items-center gap-3.5 shrink-0">
+            {/* Language Switcher (UA / EN) */}
+            <div className="flex items-center bg-white/10 rounded-full p-0.5 border border-white/10 text-[11px] font-bold">
+              <button
+                type="button"
+                onClick={() => setLang('ua')}
+                className={`px-2 py-0.5 rounded-full transition-all ${
+                  lang === 'ua'
+                    ? 'bg-[#fb7b04] text-white shadow-sm'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+                aria-label="Українська мова"
+              >
+                UA
+              </button>
+              <button
+                type="button"
+                onClick={() => setLang('en')}
+                className={`px-2 py-0.5 rounded-full transition-all ${
+                  lang === 'en'
+                    ? 'bg-[#fb7b04] text-white shadow-sm'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+                aria-label="English language"
+              >
+                EN
+              </button>
+            </div>
+
             {/* Mobile quick call */}
             <a 
               href="tel:+380732152623" 
@@ -55,7 +86,7 @@ export default function Header() {
 
             {/* Social Icons (Facebook & Instagram from original) */}
             <a 
-              href="https://facebook.com/pautina.rooms" 
+              href="https://www.facebook.com/pautinarooms/" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="Facebook PAUTINA"
@@ -64,7 +95,7 @@ export default function Header() {
               <Facebook className="w-4 h-4 fill-current" />
             </a>
             <a 
-              href="https://instagram.com/pautina_rooms" 
+              href="https://www.instagram.com/pautinarooms/" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="Instagram PAUTINA"
@@ -85,7 +116,7 @@ export default function Header() {
         </div>
       </div>
 
-      {/* ================= TIER 2: Main Navigation Bar (Dark gradient from original ext.css) ================= */}
+      {/* ================= TIER 2: Main Navigation Bar ================= */}
       <nav 
         className="hidden lg:block border-b border-white/10 backdrop-blur-md"
         style={{
@@ -99,7 +130,7 @@ export default function Header() {
                 href="/#quests" 
                 className="hover:text-[#fbefab] hover:underline underline-offset-8 transition-colors whitespace-nowrap"
               >
-                Кімнати
+                {nav.rooms}
               </a>
             </li>
             <li>
@@ -107,7 +138,7 @@ export default function Header() {
                 href="/#quests" 
                 className="hover:text-[#fbefab] hover:underline underline-offset-8 transition-colors whitespace-nowrap"
               >
-                Галерея
+                {nav.gallery}
               </a>
             </li>
             <li>
@@ -115,7 +146,7 @@ export default function Header() {
                 href="/birthday" 
                 className="hover:text-[#fbefab] hover:underline underline-offset-8 transition-colors whitespace-nowrap"
               >
-                Програми на ДЕНЬ НАРОДЖЕННЯ
+                {nav.birthday}
               </a>
             </li>
             <li>
@@ -123,7 +154,7 @@ export default function Header() {
                 href="/certificates" 
                 className="hover:text-[#fbefab] hover:underline underline-offset-8 transition-colors whitespace-nowrap"
               >
-                Сертифікат
+                {nav.certificates}
               </a>
             </li>
             <li>
@@ -131,7 +162,7 @@ export default function Header() {
                 href="/faq" 
                 className="hover:text-[#fbefab] hover:underline underline-offset-8 transition-colors whitespace-nowrap"
               >
-                FAQ
+                {nav.faq}
               </a>
             </li>
             <li>
@@ -139,7 +170,7 @@ export default function Header() {
                 href="/locations" 
                 className="hover:text-[#fbefab] hover:underline underline-offset-8 transition-colors whitespace-nowrap"
               >
-                Піші КВЕСТИ
+                {nav.outdoor}
               </a>
             </li>
             <li>
@@ -147,7 +178,7 @@ export default function Header() {
                 href="/contacts" 
                 className="hover:text-[#fbefab] hover:underline underline-offset-8 transition-colors whitespace-nowrap"
               >
-                Контакти
+                {nav.contacts}
               </a>
             </li>
           </ul>
@@ -157,65 +188,94 @@ export default function Header() {
       {/* ================= Mobile / Tablet Drawer Menu ================= */}
       {isOpen && (
         <div className="lg:hidden bg-[#0d0d0d] border-b border-white/10 px-6 py-6 transition-all duration-300 animate-in fade-in slide-in-from-top-4 backdrop-blur-xl">
+          {/* Mobile Language Switcher */}
+          <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/10">
+            <span className="text-xs uppercase text-gray-400 font-semibold tracking-wider">Мова / Language:</span>
+            <div className="flex items-center bg-white/10 rounded-full p-0.5 border border-white/10 text-xs font-bold">
+              <button
+                type="button"
+                onClick={() => setLang('ua')}
+                className={`px-3 py-1 rounded-full transition-all ${
+                  lang === 'ua'
+                    ? 'bg-[#fb7b04] text-white shadow-sm'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                UA
+              </button>
+              <button
+                type="button"
+                onClick={() => setLang('en')}
+                className={`px-3 py-1 rounded-full transition-all ${
+                  lang === 'en'
+                    ? 'bg-[#fb7b04] text-white shadow-sm'
+                    : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                EN
+              </button>
+            </div>
+          </div>
+
           <nav className="flex flex-col space-y-3.5 text-sm uppercase tracking-wider font-semibold">
             <a 
               href="/#quests" 
               onClick={() => setIsOpen(false)}
               className="py-2 border-b border-white/5 hover:text-[#fbefab] transition-colors flex items-center justify-between"
             >
-              <span>🗝️ Кімнати</span>
-              <span className="text-xs text-gray-500 font-mono">39 квестів</span>
+              <span>🗝️ {nav.rooms}</span>
+              <span className="text-xs text-gray-500 font-mono">{nav.allQuestsCount}</span>
             </a>
             <a 
               href="/#quests" 
               onClick={() => setIsOpen(false)}
               className="py-2 border-b border-white/5 hover:text-[#fbefab] transition-colors"
             >
-              🖼️ Галерея
+              🖼️ {nav.gallery}
             </a>
             <a 
               href="/birthday" 
               onClick={() => setIsOpen(false)}
               className="py-2 border-b border-white/5 hover:text-[#fbefab] transition-colors flex items-center justify-between"
             >
-              <span>🎂 Програми на ДЕНЬ НАРОДЖЕННЯ</span>
-              <span className="text-xs text-[#fbefab]">Свято під ключ</span>
+              <span>🎂 {nav.birthday}</span>
+              <span className="text-xs text-[#fbefab]">{nav.turnkeyParty}</span>
             </a>
             <a 
               href="/certificates" 
               onClick={() => setIsOpen(false)}
               className="py-2 border-b border-white/5 hover:text-[#fbefab] transition-colors flex items-center justify-between"
             >
-              <span>🎁 Сертифікат</span>
-              <span className="text-xs text-gray-500">від 1000 грн</span>
+              <span>🎁 {nav.certificates}</span>
+              <span className="text-xs text-gray-500">{nav.fromPrice}</span>
             </a>
             <a 
               href="/faq" 
               onClick={() => setIsOpen(false)}
               className="py-2 border-b border-white/5 hover:text-[#fbefab] transition-colors"
             >
-              ❓ FAQ
+              ❓ {nav.faq}
             </a>
             <a 
               href="/locations" 
               onClick={() => setIsOpen(false)}
               className="py-2 border-b border-white/5 hover:text-[#fbefab] transition-colors flex items-center justify-between"
             >
-              <span>🚶 Піші КВЕСТИ (Локації)</span>
-              <span className="text-xs text-gray-500">Торгова / Шевченка</span>
+              <span>🚶 {nav.outdoor}</span>
+              <span className="text-xs text-gray-500">{nav.locationsSubtitle}</span>
             </a>
             <a 
               href="/contacts" 
               onClick={() => setIsOpen(false)}
               className="py-2 border-b border-white/5 hover:text-[#fbefab] transition-colors"
             >
-              📞 Контакти
+              📞 {nav.contacts}
             </a>
           </nav>
 
           {/* Quick Contact Phones in Drawer */}
           <div className="mt-6 pt-5 border-t border-white/10 space-y-2 text-xs font-mono">
-            <div className="text-gray-400 uppercase text-[10px] tracking-wider mb-2">Телефони для бронювання:</div>
+            <div className="text-gray-400 uppercase text-[10px] tracking-wider mb-2">{nav.bookingPhones}</div>
             <a href="tel:+380732152623" className="block text-gray-200 hover:text-[#fb7b04]">📞 +38 (073) 215-26-23</a>
             <a href="tel:+380989351270" className="block text-gray-200 hover:text-[#fb7b04]">📞 +38 (098) 935-12-70</a>
             <a href="tel:+380997350009" className="block text-gray-200 hover:text-[#fb7b04]">📞 +38 (099) 735-00-09</a>
