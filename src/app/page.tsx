@@ -1,96 +1,49 @@
 import { api } from '@/lib/api';
-import Link from 'next/link';
-import Image from 'next/image';
 import QuestCatalog from '@/components/QuestCatalog';
-import { Sparkles, Trophy, ShieldCheck, HeartHandshake, MapPin, Phone, Clock, ArrowRight } from 'lucide-react';
+import { MapPin, Phone } from 'lucide-react';
+import Image from 'next/image';
 
 export default async function HomePage() {
   const quests = await api.quests.getAll();
 
   return (
-    <div className="flex flex-col bg-brand-dark min-h-screen text-white">
-      {/* Hero Section */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* Dark radial glow and gradient */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-brand-red/15 via-black/70 to-brand-dark z-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-brand-dark z-10" />
-        
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center opacity-40 mix-blend-luminosity scale-105"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1514533450685-4493e01d1fdc?auto=format&fit=crop&w=1920&q=80')`,
-          }} 
-        />
-        
-        <div className="relative z-20 text-center px-4 max-w-5xl mx-auto py-20">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-red/20 border border-brand-red/40 text-brand-red text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-md">
-            <Sparkles className="w-3.5 h-3.5" /> Найбільша мережа квестів в Одесі
+    <div className="flex flex-col bg-[#000000] min-h-screen text-white">
+      {/* ================= Authentic Hero / Intro Section (pautina-rooms.com) ================= */}
+      <section className="bg-[#000000] pt-6 sm:pt-8 pb-2 text-center">
+        <div className="container mx-auto px-4 max-w-5xl">
+          {/* Subtitle with Underline */}
+          <div className="mb-4">
+            <h2 className="text-[#fb7b04] text-sm sm:text-base md:text-lg font-bold tracking-wide inline-block border-b border-[#fb7b04]/80 pb-0.5">
+              Квест кімнати Одеси від PAUTINArooms!
+            </h2>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold mb-6 font-accent tracking-tighter leading-none">
-            АНТУРАЖНІ ТА АТМОСФЕРНІ <br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red via-red-500 to-amber-500">
-              КВЕСТ КІМНАТИ ОДЕСИ
-            </span>
-          </h1>
-
-          <p className="text-base sm:text-xl max-w-2xl mx-auto mb-10 text-gray-300 leading-relaxed font-light">
-            Пориньте у світ загадок, містики та пригод. Реалістичні декорації, живі актори, високотехнологічні механізми без жодних нудних замків.
+          {/* Description Paragraph */}
+          <p className="text-gray-300 text-xs sm:text-sm md:text-[14px] leading-relaxed tracking-wide font-normal max-w-4xl mx-auto mb-8 sm:mb-10">
+            Антуражні та атмосферні квест кімнати від PAUTINArooms! Більш 30 різноманітних квестів на різні сюжети:{' '}
+            <span className="font-semibold text-white">МІСТИКА</span>,{' '}
+            <span className="font-semibold text-white">ДЕТЕКТИВ</span>,{' '}
+            <span className="font-semibold text-white">ХОРРОР</span>,{' '}
+            <span className="font-semibold text-white">ПРИГОДИ</span>,{' '}
+            <span className="font-semibold text-white">ФАНТАСТИКА</span>,{' '}
+            <span className="font-semibold text-white">КВЕСТ ПРОГРАМИ на День народження</span>
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <a 
-              href="#quests" 
-              className="w-full sm:w-auto bg-brand-red hover:bg-red-700 text-white px-8 py-4 rounded-xl font-bold uppercase tracking-widest transition-all shadow-xl shadow-brand-red/30 active:scale-95 text-center flex items-center justify-center gap-2 cursor-pointer"
-            >
-              <span>Вибрати квест</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
-            <a 
-              href="/birthday" 
-              className="w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-md px-8 py-4 rounded-xl font-bold uppercase tracking-widest transition-all text-center cursor-pointer"
-            >
-              Дні народження
-            </a>
-          </div>
-
-          {/* Quick Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-4xl mx-auto border-t border-white/10 pt-8">
-            <div>
-              <span className="block text-3xl font-extrabold text-brand-red font-accent">30+</span>
-              <span className="text-xs text-gray-400 uppercase tracking-wider">Квестів у мережі</span>
-            </div>
-            <div>
-              <span className="block text-3xl font-extrabold text-brand-gold font-accent">50 000+</span>
-              <span className="text-xs text-gray-400 uppercase tracking-wider">Гравців пройшли</span>
-            </div>
-            <div>
-              <span className="block text-3xl font-extrabold text-white font-accent">2</span>
-              <span className="text-xs text-gray-400 uppercase tracking-wider">Локації в центрі</span>
-            </div>
-            <div>
-              <span className="block text-3xl font-extrabold text-brand-red font-accent">4.9 ★</span>
-              <span className="text-xs text-gray-400 uppercase tracking-wider">Рейтинг за відгуками</span>
+          {/* Signature Title: КВЕСТИ with Gold Underline Bar */}
+          <div className="mb-8 sm:mb-10">
+            <div className="inline-block relative">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-widest uppercase">
+                КВЕСТИ
+              </h1>
+              <div className="h-[2px] bg-[#fbefab] shadow-[0_0_12px_rgba(251,239,171,0.8)] mt-3 mx-auto w-full min-w-[260px] sm:min-w-[420px]" />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Quests Catalog Section */}
-      <section id="quests" className="py-24 bg-brand-dark border-t border-white/5 scroll-mt-20">
+      {/* ================= Quests Catalog Section ================= */}
+      <section id="quests" className="pb-24 bg-[#000000]">
         <div className="container mx-auto px-4 max-w-7xl">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-brand-red text-xs uppercase font-extrabold tracking-widest block mb-2">Каталог пригод</span>
-            <h2 className="text-3xl md:text-5xl font-extrabold font-accent tracking-tight">
-              ОБЕРІТЬ СВІЙ <span className="text-brand-red">КВЕСТ</span>
-            </h2>
-            <p className="text-gray-400 text-sm mt-3">
-              Обирайте за жанром, кількістю гравців або локацією в Одесі
-            </p>
-          </div>
-
-          {/* Interactive Catalog with Filter */}
           <QuestCatalog initialQuests={quests} />
         </div>
       </section>

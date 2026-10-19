@@ -18,7 +18,8 @@ const questsList: Quest[] = (rawQuests as any[]).map((q) => ({
   ageLimit: q.ageLimit || '12+',
   price: q.price || { min: 1400, currency: 'UAH' },
   location: q.location,
-  categories: q.categories || ['Пригоди']
+  categories: q.categories || ['Пригоди'],
+  isNew: q.isNew ?? (q.slug === 'hogvarts' || q.slug === 'pobeg' || q.id === '1' || q.id === '3')
 }));
 
 export const api = {

@@ -24,6 +24,7 @@ export interface Quest {
     area?: string;
   };
   categories: string[];
+  isNew?: boolean;
 }
 
 export interface Slot {
