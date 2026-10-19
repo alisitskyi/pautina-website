@@ -11,16 +11,55 @@ interface QuestCatalogProps {
 }
 
 export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>('Всі');
+  const [selectedCategory, setSelectedCategory] = useState<string>('ВСІ');
   const [selectedArea, setSelectedArea] = useState<string>('Всі райони');
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const categories = ['Всі', 'Хоррор', 'Містика', 'Фентезі', 'Детектив', 'Для дітей', 'Пригоди'];
+  const categories = [
+    'ВСІ',
+    'ХОРРОР',
+    'МІСТИКА',
+    'ФЕНТЕЗІ',
+    'ФАНТАСТИКА',
+    'ДЕТЕКТИВ',
+    'ПРИГОДИ',
+    'НА ДЕНЬ НАРОДЖЕННЯ',
+    'ДЛЯ ПАРИ',
+    'ДЛЯ 4+ ЛЮДЕЙ'
+  ];
   const areas = ['Всі райони', 'Центр', 'Приморський'];
 
   const filteredQuests = initialQuests.filter((quest) => {
-    const matchesCategory =
-      selectedCategory === 'Всі' || quest.categories.includes(selectedCategory);
+    let matchesCategory = true;
+    if (selectedCategory !== 'ВСІ') {
+      if (selectedCategory === 'ХОРРОР') {
+        matchesCategory = quest.categories.some((c) => c.toLowerCase().includes('хоррор'));
+      } else if (selectedCategory === 'МІСТИКА') {
+        matchesCategory = quest.categories.some((c) => c.toLowerCase().includes('містик'));
+      } else if (selectedCategory === 'ФЕНТЕЗІ') {
+        matchesCategory = quest.categories.some((c) => c.toLowerCase().includes('фентез'));
+      } else if (selectedCategory === 'ФАНТАСТИКА') {
+        matchesCategory =
+          quest.categories.some((c) => c.toLowerCase().includes('фантаст')) ||
+          ['Загублені у космосі', 'ЧУЖІ', 'Мисливці за привидами'].includes(quest.title) ||
+          quest.description.toLowerCase().includes('космос') ||
+          quest.description.toLowerCase().includes('чужі');
+      } else if (selectedCategory === 'ДЕТЕКТИВ') {
+        matchesCategory = quest.categories.some((c) => c.toLowerCase().includes('детектив'));
+      } else if (selectedCategory === 'ПРИГОДИ') {
+        matchesCategory =
+          quest.categories.some((c) => c.toLowerCase().includes('пригод')) ||
+          ['ДЖУМАНДЖИ', 'ДЖУНГЛІ', 'ХОББІТ'].includes(quest.title);
+      } else if (selectedCategory === 'НА ДЕНЬ НАРОДЖЕННЯ') {
+        matchesCategory =
+          quest.title.toLowerCase().includes('день народження') ||
+          quest.categories.some((c) => c.toLowerCase().includes('дітей'));
+      } else if (selectedCategory === 'ДЛЯ ПАРИ') {
+        matchesCategory = quest.players.min <= 2 && quest.players.max <= 4;
+      } else if (selectedCategory === 'ДЛЯ 4+ ЛЮДЕЙ') {
+        matchesCategory = quest.players.max >= 5;
+      }
+    }
     
     const matchesArea =
       selectedArea === 'Всі райони' ||
@@ -201,7 +240,7 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
           <p className="text-lg">За обраними фільтрами квестів не знайдено.</p>
           <button
             onClick={() => {
-              setSelectedCategory('Всі');
+              setSelectedCategory('ВСІ');
               setSelectedArea('Всі райони');
               setSearchQuery('');
             }}
