@@ -129,21 +129,23 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
         </div>
       </div>
 
-      {/* Quest Cards Grid (Authentic Pautina Layout: Title ABOVE poster + Option 1 CTA) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Quest Cards Grid (Authentic Pautina Layout: Equal Heights Across All Cards) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
         {filteredQuests.map((quest) => (
           <a
             key={quest.id}
             href={`/room/${quest.slug}`}
-            className="group flex flex-col transition-all duration-300 cursor-pointer block"
+            className="group flex flex-col h-full transition-all duration-300 cursor-pointer"
           >
-            {/* Title ABOVE Poster (Authentic Pautina Style) */}
-            <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-wide text-white mb-2.5 group-hover:text-[#fbefab] transition-colors truncate">
-              {quest.title}
-            </h3>
+            {/* Title ABOVE Poster (Equal Height Container) */}
+            <div className="h-9 sm:h-10 flex items-center mb-2.5">
+              <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-wide text-white group-hover:text-[#fbefab] transition-colors truncate w-full">
+                {quest.title}
+              </h3>
+            </div>
 
             {/* Poster Image Frame */}
-            <div className="relative aspect-[16/11] w-full overflow-hidden rounded-t-xl border border-white/10 bg-[#0d0d0d]">
+            <div className="relative aspect-[16/11] w-full shrink-0 overflow-hidden rounded-t-xl border border-white/10 bg-[#0d0d0d]">
               <Image
                 src={quest.image}
                 alt={quest.title}
@@ -193,26 +195,26 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
               </div>
             </div>
 
-            {/* Card Body & CTA (Option 1 with specs, address, price, and full-width CTA) */}
-            <div className="bg-[#0e0e0e] border-x border-b border-white/10 rounded-b-xl p-4 sm:p-5 flex flex-col justify-between group-hover:border-white/20 transition-all shadow-xl">
-              {/* Specs Bar */}
-              <div className="grid grid-cols-3 gap-2 py-2.5 border-t border-b border-white/5 text-xs text-gray-300 mb-3 bg-black/40 rounded-lg px-2">
+            {/* Card Body & CTA (Equalized flex-1 height) */}
+            <div className="bg-[#0e0e0e] border-x border-b border-white/10 rounded-b-xl p-4 sm:p-5 flex flex-col flex-1 justify-between group-hover:border-white/20 transition-all shadow-xl">
+              {/* Specs Bar (Consistent min-h-[52px]) */}
+              <div className="grid grid-cols-3 gap-2 min-h-[52px] items-center py-2 border-t border-b border-white/5 text-xs text-gray-300 mb-3 bg-black/40 rounded-lg px-2">
                 <div className="flex items-center gap-1.5 justify-center">
-                  <Users className="w-3.5 h-3.5 text-[#fb7b04]" />
-                  <span>{quest.players.min}-{quest.players.max} ос.</span>
+                  <Users className="w-3.5 h-3.5 text-[#fb7b04] shrink-0" />
+                  <span className="whitespace-nowrap">{quest.players.min}-{quest.players.max} ос.</span>
                 </div>
                 <div className="flex items-center gap-1.5 justify-center border-l border-r border-white/10">
-                  <Clock className="w-3.5 h-3.5 text-[#fbefab]" />
-                  <span>{quest.duration} хв</span>
+                  <Clock className="w-3.5 h-3.5 text-[#fbefab] shrink-0" />
+                  <span className="whitespace-nowrap">{quest.duration} хв</span>
                 </div>
-                <div className="flex items-center gap-1.5 justify-center">
-                  <Sparkles className="w-3.5 h-3.5 text-[#fb7b04]" />
-                  <span>{quest.ageLimit}</span>
+                <div className="flex items-center gap-1 justify-center text-center">
+                  <Sparkles className="w-3.5 h-3.5 text-[#fb7b04] shrink-0" />
+                  <span className="text-[11px] leading-tight line-clamp-2">{quest.ageLimit}</span>
                 </div>
               </div>
 
-              {/* Address & Price Row */}
-              <div className="flex justify-between items-center mb-3 text-xs">
+              {/* Address & Price Row (Consistent min-h-[24px]) */}
+              <div className="flex justify-between items-center mb-4 text-xs min-h-[24px]">
                 <div className="flex items-center gap-1.5 text-gray-400 truncate max-w-[65%]">
                   <MapPin className="w-3.5 h-3.5 text-gray-500 shrink-0" />
                   <span className="truncate">{quest.location.address}</span>
@@ -225,8 +227,8 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
                 </div>
               </div>
 
-              {/* Booking CTA Button (Option 1) */}
-              <div className="w-full bg-[#fb7b04] group-hover:bg-[#e06d02] text-white font-extrabold py-2.5 sm:py-3 rounded-lg text-xs uppercase tracking-wider text-center transition-all shadow-md shadow-[#fb7b04]/30 flex items-center justify-center gap-2 group-hover:shadow-[0_0_18px_rgba(251,123,4,0.5)] active:scale-95">
+              {/* Booking CTA Button (Pushed to bottom with mt-auto) */}
+              <div className="w-full mt-auto bg-[#fb7b04] group-hover:bg-[#e06d02] text-white font-extrabold py-2.5 sm:py-3 rounded-lg text-xs uppercase tracking-wider text-center transition-all shadow-md shadow-[#fb7b04]/30 flex items-center justify-center gap-2 group-hover:shadow-[0_0_18px_rgba(251,123,4,0.5)] active:scale-95">
                 <Calendar className="w-3.5 h-3.5" />
                 <span>Забронювати</span>
               </div>
