@@ -74,24 +74,33 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
     return matchesCategory && matchesArea && matchesSearch;
   });
 
+  const filterRows = [
+    ['ВСІ', 'ХОРРОР', 'МІСТИКА', 'ФЕНТЕЗІ', 'ФАНТАСТИКА'],
+    ['ДЕТЕКТИВ', 'ПРИГОДИ', 'НА ДЕНЬ НАРОДЖЕННЯ', 'ДЛЯ ПАРИ', 'ДЛЯ 4+ ЛЮДЕЙ']
+  ];
+
   return (
     <div>
       {/* Category & Location Filters */}
       <div className="flex flex-col gap-6 mb-10">
-        {/* Category Pills */}
-        <div className="flex flex-wrap justify-center gap-2">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
-                selectedCategory === cat
-                  ? 'bg-[#fb7b04] text-white shadow-lg shadow-[#fb7b04]/30 scale-105'
-                  : 'bg-neutral-900/90 text-gray-300 hover:text-white hover:bg-neutral-800 border border-white/10'
-              }`}
-            >
-              {cat}
-            </button>
+        {/* Category Pills (2 rows) */}
+        <div className="flex flex-col items-center gap-2.5">
+          {filterRows.map((row, rowIdx) => (
+            <div key={rowIdx} className="flex flex-wrap justify-center gap-2">
+              {row.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${
+                    selectedCategory === cat
+                      ? 'bg-[#fb7b04] text-white shadow-lg shadow-[#fb7b04]/30 scale-105'
+                      : 'bg-neutral-900/90 text-gray-300 hover:text-white hover:bg-neutral-800 border border-white/10'
+                  }`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
           ))}
         </div>
 
@@ -179,10 +188,12 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
 
             {/* Bottom Content Area: Title IN card, Specs, Address/Price & Booking Button */}
             <div className="relative z-10 w-full pointer-events-none mt-auto">
-              {/* Title INSIDE Card (No description) */}
-              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-wide uppercase mb-3 drop-shadow-md group-hover:text-[#fbefab] transition-colors line-clamp-1">
-                {quest.title}
-              </h3>
+              {/* Title INSIDE Card (Decreased font size, full title without truncation) */}
+              <div className="min-h-[2.75rem] sm:min-h-[3.25rem] flex items-end mb-3">
+                <h3 className="text-base sm:text-lg md:text-xl font-extrabold text-white tracking-wide uppercase leading-snug drop-shadow-md group-hover:text-[#fbefab] transition-colors">
+                  {quest.title}
+                </h3>
+              </div>
 
               {/* Specs Glass Capsule */}
               <div className="flex items-center justify-between py-2 px-3 sm:px-4 bg-black/60 backdrop-blur-md border border-white/10 rounded-full mb-3 text-xs text-gray-200">
