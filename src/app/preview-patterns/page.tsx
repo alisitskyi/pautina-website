@@ -6,21 +6,36 @@ import Link from 'next/link';
 import { Users, Clock, Sparkles, MapPin, Calendar, ArrowRight } from 'lucide-react';
 
 export default function PreviewPatternsPage() {
-  const [selectedPattern, setSelectedPattern] = useState<'1' | '2' | 'split'>('1');
-  const [opacity, setOpacity] = useState<number>(35);
-  const [scale, setScale] = useState<number>(550);
+  const [selectedPattern, setSelectedPattern] = useState<'1' | '2' | '3' | 'split'>('3');
+  const [opacity, setOpacity] = useState<number>(30);
+  const [scale, setScale] = useState<number>(650);
   const [blendMode, setBlendMode] = useState<'screen' | 'normal'>('screen');
+
+  const getPatternUrl = (id: '1' | '2' | '3') => {
+    if (id === '3') return '/images/web-pattern-3.svg';
+    return `/images/web-pattern-${id}.png`;
+  };
 
   return (
     <div className="min-h-screen bg-[#000000] text-white relative overflow-hidden">
       {/* Floating Control Bar */}
-      <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-[#121212]/95 backdrop-blur-xl border border-white/20 px-5 py-3 rounded-2xl shadow-2xl flex flex-wrap items-center gap-4 text-xs max-w-[96vw]">
+      <div className="fixed top-24 left-1/2 -translate-x-1/2 z-50 bg-[#121212]/95 backdrop-blur-xl border border-white/20 px-5 py-3 rounded-2xl shadow-2xl flex flex-wrap items-center gap-3 text-xs max-w-[96vw]">
         {/* Pattern Selector */}
         <div className="flex items-center gap-2">
           <span className="text-[#fb7b04] font-black uppercase tracking-wider text-[11px] whitespace-nowrap">
             Варіант:
           </span>
-          <div className="flex bg-black/70 p-1 rounded-xl border border-white/10 gap-1">
+          <div className="flex bg-black/70 p-1 rounded-xl border border-white/10 gap-1 flex-wrap">
+            <button
+              onClick={() => setSelectedPattern('3')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all ${
+                selectedPattern === '3'
+                  ? 'bg-[#fb7b04] text-white shadow-md'
+                  : 'text-gray-300 hover:text-white'
+              }`}
+            >
+              ⭐ 3. Вектор (Vector pautina.svg)
+            </button>
             <button
               onClick={() => setSelectedPattern('1')}
               className={`px-3 py-1.5 rounded-lg font-bold transition-all ${
@@ -49,7 +64,7 @@ export default function PreviewPatternsPage() {
                   : 'text-gray-300 hover:text-white'
               }`}
             >
-              ⚡ 50 / 50 Спліт
+              ⚡ Спліт (Фото vs Вектор)
             </button>
           </div>
         </div>
@@ -114,20 +129,20 @@ export default function PreviewPatternsPage() {
             }}
           >
             <div className="absolute top-40 left-6 bg-black/90 px-3.5 py-1.5 rounded-lg border border-[#fb7b04]/40 text-xs font-bold text-[#fb7b04] shadow-lg">
-              ← Варіант 1 (з фото 1)
+              ← Варіант 1 (Фото 1)
             </div>
           </div>
-          {/* Right half: Pattern 2 */}
+          {/* Right half: Pattern 3 (Vector) */}
           <div 
             className="flex-1 h-full relative"
             style={{
-              backgroundImage: "url('/images/web-pattern-2.png')",
+              backgroundImage: "url('/images/web-pattern-3.svg')",
               backgroundSize: `${scale}px`,
               backgroundRepeat: 'repeat',
             }}
           >
             <div className="absolute top-40 right-6 bg-black/90 px-3.5 py-1.5 rounded-lg border border-[#fb7b04]/40 text-xs font-bold text-[#fb7b04] shadow-lg">
-              Варіант 2 (з фото 2) →
+              Варіант 3 (Вектор SVG) →
             </div>
           </div>
         </div>
@@ -135,7 +150,7 @@ export default function PreviewPatternsPage() {
         <div
           className="fixed inset-0 pointer-events-none z-0 transition-all duration-300"
           style={{
-            backgroundImage: `url('/images/web-pattern-${selectedPattern}.png')`,
+            backgroundImage: `url('${getPatternUrl(selectedPattern)}')`,
             backgroundSize: `${scale}px`,
             backgroundRepeat: 'repeat',
             opacity: opacity / 100,
@@ -427,54 +442,79 @@ export default function PreviewPatternsPage() {
         </div>
 
         {/* Informative Comparison Summary */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div 
+            onClick={() => setSelectedPattern('3')}
+            className={`cursor-pointer p-6 rounded-3xl border transition-all ${
+              selectedPattern === '3'
+                ? 'bg-neutral-900 border-[#fb7b04] shadow-xl shadow-[#fb7b04]/20 ring-1 ring-[#fb7b04]'
+                : 'bg-neutral-950/80 border-white/10 hover:border-white/30'
+            }`}
+          >
+            <div className="flex justify-between items-center mb-3">
+              <span className="text-[#fb7b04] font-black text-xs uppercase tracking-widest flex items-center gap-1.5">
+                <span>⭐</span> Варіант 3 (Вектор SVG)
+              </span>
+              <span className="text-[10px] bg-[#fb7b04]/20 border border-[#fb7b04]/40 px-2 py-0.5 rounded text-[#fbefab] font-bold">
+                Вектор 100%
+              </span>
+            </div>
+            <h3 className="text-lg sm:text-xl font-extrabold mb-2">Векторна павутина (з файлу)</h3>
+            <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
+              Оригінальний вектор із файлу <code className="text-[#fb7b04] text-[11px]">Vector pautina.svg</code>. 100% точність ліній, ідеальна чіткість без розмиття на Retina/4K екранах.
+            </p>
+            <button className="w-full bg-[#fb7b04] hover:bg-[#e06d02] text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all">
+              {selectedPattern === '3' ? '✓ Зараз активно' : 'Увімкнути на весь екран'}
+            </button>
+          </div>
+
           <div 
             onClick={() => setSelectedPattern('1')}
-            className={`cursor-pointer p-6 sm:p-8 rounded-3xl border transition-all ${
+            className={`cursor-pointer p-6 rounded-3xl border transition-all ${
               selectedPattern === '1'
-                ? 'bg-neutral-900 border-[#fb7b04] shadow-xl shadow-[#fb7b04]/10'
+                ? 'bg-neutral-900 border-[#fb7b04] shadow-xl shadow-[#fb7b04]/20 ring-1 ring-[#fb7b04]'
                 : 'bg-neutral-950/80 border-white/10 hover:border-white/30'
             }`}
           >
             <div className="flex justify-between items-center mb-3">
               <span className="text-[#fb7b04] font-black text-xs uppercase tracking-widest">
-                Варіант 1 (з вашого файлу 1)
+                Варіант 1 (з фото 1)
               </span>
               <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded text-gray-300">
                 529 × 848 px
               </span>
             </div>
-            <h3 className="text-xl font-extrabold mb-2">Полігональна розбита павутина</h3>
+            <h3 className="text-lg sm:text-xl font-extrabold mb-2">Полігональна розбита павутина</h3>
             <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
-              Асиметричні ламані грані з осередками круглих павутинок у вузлах. Виглядає як тріщини у старовинній готичній вітражній кладці або таємниче склепіння.
+              Асиметричні ламані грані з осередками круглих павутинок у вузлах. Виглядає як тріщини у старовинній готичній кладці.
             </p>
-            <button className="bg-[#fb7b04] hover:bg-[#e06d02] text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all">
-              Увімкнути на весь екран
+            <button className="w-full bg-[#fb7b04] hover:bg-[#e06d02] text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all">
+              {selectedPattern === '1' ? '✓ Зараз активно' : 'Увімкнути на весь екран'}
             </button>
           </div>
 
           <div 
             onClick={() => setSelectedPattern('2')}
-            className={`cursor-pointer p-6 sm:p-8 rounded-3xl border transition-all ${
+            className={`cursor-pointer p-6 rounded-3xl border transition-all ${
               selectedPattern === '2'
-                ? 'bg-neutral-900 border-[#fb7b04] shadow-xl shadow-[#fb7b04]/10'
+                ? 'bg-neutral-900 border-[#fb7b04] shadow-xl shadow-[#fb7b04]/20 ring-1 ring-[#fb7b04]'
                 : 'bg-neutral-950/80 border-white/10 hover:border-white/30'
             }`}
           >
             <div className="flex justify-between items-center mb-3">
               <span className="text-[#fb7b04] font-black text-xs uppercase tracking-widest">
-                Варіант 2 (з вашого файлу 2)
+                Варіант 2 (з фото 2)
               </span>
               <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded text-gray-300">
                 528 × 849 px
               </span>
             </div>
-            <h3 className="text-xl font-extrabold mb-2">Переплетені радіальні кола</h3>
+            <h3 className="text-lg sm:text-xl font-extrabold mb-2">Переплетені радіальні кола</h3>
             <p className="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4">
-              Класична густа мережа з концентричних шовкових кіл, що розходяться з кількох епіцентрів і перехрещуються нитками. Чітка, канонічна павутина бренду PAUTINA.
+              Класична густа мережа з концентричних шовкових кіл, що розходяться з кількох епіцентрів і перехрещуються нитками.
             </p>
-            <button className="bg-[#fb7b04] hover:bg-[#e06d02] text-white text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all">
-              Увімкнути на весь екран
+            <button className="w-full bg-[#fb7b04] hover:bg-[#e06d02] text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all">
+              {selectedPattern === '2' ? '✓ Зараз активно' : 'Увімкнути на весь екран'}
             </button>
           </div>
         </div>
