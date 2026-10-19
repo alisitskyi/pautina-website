@@ -248,7 +248,7 @@
       "max": 6
     },
     "duration": 60,
-    "ageLimit": "10+ без сопровождения",
+    "ageLimit": "10+",
     "price": {
       "min": 1400,
       "currency": "UAH"
@@ -281,7 +281,7 @@
       "max": 4
     },
     "duration": 60,
-    "ageLimit": "12+ без супроводження дорослых",
+    "ageLimit": "12+",
     "price": {
       "min": 1600,
       "currency": "UAH"
@@ -513,7 +513,7 @@
       "max": 6
     },
     "duration": 60,
-    "ageLimit": "12+ без сопровождения",
+    "ageLimit": "12+",
     "price": {
       "min": 1600,
       "currency": "UAH"
@@ -579,7 +579,7 @@
       "max": 4
     },
     "duration": 60,
-    "ageLimit": "12+ без супроводження",
+    "ageLimit": "12+",
     "price": {
       "min": 1600,
       "currency": "UAH"
@@ -878,7 +878,7 @@
       "max": 8
     },
     "duration": 60,
-    "ageLimit": "10+ без супроводження",
+    "ageLimit": "10+",
     "price": {
       "min": 200,
       "currency": "UAH"
@@ -1209,7 +1209,7 @@
       "max": 10
     },
     "duration": 60,
-    "ageLimit": "12/+",
+    "ageLimit": "12+",
     "price": {
       "min": 1200,
       "currency": "UAH"

@@ -129,107 +129,96 @@ export default function QuestCatalog({ initialQuests }: QuestCatalogProps) {
         </div>
       </div>
 
-      {/* Quest Cards Grid (Authentic Pautina Layout: Equal Heights Across All Cards) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+      {/* Quest Cards Grid (Full Height Poster, Glass Overlay, Equal Height) */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredQuests.map((quest) => (
           <a
             key={quest.id}
             href={`/room/${quest.slug}`}
-            className="group flex flex-col h-full transition-all duration-300 cursor-pointer"
+            className="group relative h-[520px] sm:h-[540px] rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 hover:border-[#fb7b04]/60 transition-all duration-300 shadow-2xl flex flex-col justify-between p-5 sm:p-6 cursor-pointer block bg-[#0a0a0a]"
           >
-            {/* Title ABOVE Poster (Equal Height Container) */}
-            <div className="h-9 sm:h-10 flex items-center mb-2.5">
-              <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-wide text-white group-hover:text-[#fbefab] transition-colors truncate w-full">
-                {quest.title}
-              </h3>
-            </div>
+            {/* Background Image Full Height */}
+            <Image
+              src={quest.image}
+              alt={quest.title}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
+              loading="lazy"
+              className="object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
+            />
+            {/* Gradient Overlay for Legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/30 pointer-events-none" />
 
-            {/* Poster Image Frame */}
-            <div className="relative aspect-[16/11] w-full shrink-0 overflow-hidden rounded-t-xl border border-white/10 bg-[#0d0d0d]">
-              <Image
-                src={quest.image}
-                alt={quest.title}
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 420px"
-                loading="lazy"
-                className="object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-
-              {/* NEW Stamp Badge (Authentic to original screenshot) */}
-              {quest.isNew && (
-                quest.slug === 'pobeg' || quest.id === '3' ? (
-                  /* Orange diagonal NEW badge in top-right */
-                  <div className="absolute top-3 right-3 z-10 pointer-events-none">
-                    <span className="inline-block border-2 border-[#fb7b04] text-[#fb7b04] bg-black/80 font-black text-xs sm:text-sm uppercase tracking-widest px-2.5 py-0.5 rounded shadow-lg transform rotate-12">
-                      NEW
-                    </span>
-                  </div>
-                ) : (
-                  /* Red diagonal NEW stamp in bottom-left */
-                  <div className="absolute bottom-3 left-3 z-10 pointer-events-none">
-                    <span className="inline-block border-2 border-red-600 text-red-500 bg-black/80 font-black text-xs sm:text-sm uppercase tracking-widest px-2 py-0.5 rounded shadow-lg transform -rotate-12">
-                      NEW
-                    </span>
-                  </div>
-                )
-              )}
-
-              {/* Top Badges: Categories & Star Rating */}
-              <div className="absolute top-3 left-3 flex items-center gap-1.5 z-10 pointer-events-none">
+            {/* Top Bar Badges */}
+            <div className="relative z-10 flex justify-between items-start pointer-events-none w-full">
+              {/* Category Pills */}
+              <div className="flex flex-wrap gap-1.5 max-w-[65%]">
                 {quest.categories.slice(0, 2).map((cat) => (
                   <span
                     key={cat}
-                    className="text-[10px] uppercase font-extrabold bg-black/75 backdrop-blur-md text-gray-200 border border-white/10 px-2 py-0.5 rounded tracking-wider shadow"
+                    className="text-[10px] sm:text-[11px] uppercase font-extrabold bg-[#b3181d] text-white px-2.5 py-1 rounded-md tracking-wider shadow-md"
                   >
                     {cat}
                   </span>
                 ))}
               </div>
 
-              <div className="absolute bottom-3 right-3 z-10 pointer-events-none">
-                <span className="text-xs font-bold bg-black/80 backdrop-blur-md px-2 py-0.5 rounded border border-white/10 text-[#fbefab]">
+              {/* Badges: NEW & Star Rating */}
+              <div className="flex items-center gap-2">
+                {quest.isNew && (
+                  <span className="inline-block border-2 border-[#fb7b04] text-[#fb7b04] bg-black/80 font-black text-[10px] uppercase tracking-widest px-2 py-0.5 rounded shadow">
+                    NEW
+                  </span>
+                )}
+                <span className="text-xs font-bold bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/10 text-[#fbefab]">
                   {'★'.repeat(quest.difficulty)}
                   <span className="text-gray-600">{'★'.repeat(5 - quest.difficulty)}</span>
                 </span>
               </div>
             </div>
 
-            {/* Card Body & CTA (Equalized flex-1 height) */}
-            <div className="bg-[#0e0e0e] border-x border-b border-white/10 rounded-b-xl p-4 sm:p-5 flex flex-col flex-1 justify-between group-hover:border-white/20 transition-all shadow-xl">
-              {/* Specs Bar (Consistent min-h-[52px]) */}
-              <div className="grid grid-cols-3 gap-2 min-h-[52px] items-center py-2 border-t border-b border-white/5 text-xs text-gray-300 mb-3 bg-black/40 rounded-lg px-2">
-                <div className="flex items-center gap-1.5 justify-center">
+            {/* Bottom Content Area: Title IN card, Specs, Address/Price & Booking Button */}
+            <div className="relative z-10 w-full pointer-events-none mt-auto">
+              {/* Title INSIDE Card (No description) */}
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-wide uppercase mb-3 drop-shadow-md group-hover:text-[#fbefab] transition-colors line-clamp-1">
+                {quest.title}
+              </h3>
+
+              {/* Specs Glass Capsule */}
+              <div className="flex items-center justify-between py-2 px-3 sm:px-4 bg-black/60 backdrop-blur-md border border-white/10 rounded-full mb-3 text-xs text-gray-200">
+                <div className="flex items-center gap-1.5">
                   <Users className="w-3.5 h-3.5 text-[#fb7b04] shrink-0" />
-                  <span className="whitespace-nowrap">{quest.players.min}-{quest.players.max} ос.</span>
+                  <span className="font-medium whitespace-nowrap">{quest.players.min}-{quest.players.max} ос.</span>
                 </div>
-                <div className="flex items-center gap-1.5 justify-center border-l border-r border-white/10">
+                <span className="text-white/20">•</span>
+                <div className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-[#fbefab] shrink-0" />
-                  <span className="whitespace-nowrap">{quest.duration} хв</span>
+                  <span className="font-medium whitespace-nowrap">{quest.duration} хв</span>
                 </div>
-                <div className="flex items-center gap-1 justify-center text-center">
+                <span className="text-white/20">•</span>
+                <div className="flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-[#fb7b04] shrink-0" />
-                  <span className="text-[11px] leading-tight line-clamp-2">{quest.ageLimit}</span>
+                  <span className="font-medium whitespace-nowrap">{quest.ageLimit}</span>
                 </div>
               </div>
 
-              {/* Address & Price Row (Consistent min-h-[24px]) */}
-              <div className="flex justify-between items-center mb-4 text-xs min-h-[24px]">
-                <div className="flex items-center gap-1.5 text-gray-400 truncate max-w-[65%]">
-                  <MapPin className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+              {/* Address & Price Row */}
+              <div className="flex justify-between items-center mb-3 text-xs px-1">
+                <div className="flex items-center gap-1.5 text-gray-300 truncate max-w-[65%]">
+                  <MapPin className="w-3.5 h-3.5 text-[#fb7b04] shrink-0" />
                   <span className="truncate">{quest.location.address}</span>
                 </div>
                 <div className="text-right shrink-0">
-                  <span className="text-[10px] text-gray-500 uppercase mr-1">від</span>
-                  <span className="text-base font-extrabold text-white">
-                    {quest.price.min} <span className="text-xs font-normal text-gray-400">грн</span>
+                  <span className="text-[10px] text-gray-400 uppercase mr-1">від</span>
+                  <span className="text-base sm:text-lg font-black text-white">
+                    {quest.price.min} <span className="text-xs font-normal text-gray-300">грн</span>
                   </span>
                 </div>
               </div>
 
-              {/* Booking CTA Button (Pushed to bottom with mt-auto) */}
-              <div className="w-full mt-auto bg-[#fb7b04] group-hover:bg-[#e06d02] text-white font-extrabold py-2.5 sm:py-3 rounded-lg text-xs uppercase tracking-wider text-center transition-all shadow-md shadow-[#fb7b04]/30 flex items-center justify-center gap-2 group-hover:shadow-[0_0_18px_rgba(251,123,4,0.5)] active:scale-95">
-                <Calendar className="w-3.5 h-3.5" />
+              {/* Booking CTA Button (Option 1 with brand orange #fb7b04) */}
+              <div className="w-full bg-[#fb7b04] group-hover:bg-[#e06d02] text-white font-extrabold py-3 rounded-xl text-xs sm:text-sm uppercase tracking-wider text-center transition-all shadow-lg shadow-[#fb7b04]/30 flex items-center justify-center gap-2 group-hover:shadow-[0_0_20px_rgba(251,123,4,0.6)] active:scale-95">
+                <Calendar className="w-4 h-4" />
                 <span>Забронювати</span>
               </div>
             </div>

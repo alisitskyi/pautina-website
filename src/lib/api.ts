@@ -15,7 +15,7 @@ const questsList: Quest[] = (rawQuests as any[]).map((q) => ({
   difficulty: q.difficulty as 1 | 2 | 3 | 4 | 5,
   players: q.players,
   duration: q.duration || 60,
-  ageLimit: q.ageLimit || '12+',
+  ageLimit: (q.ageLimit || '12+').replace(/\s*без\s+.*$/i, '').replace('12/+', '12+').trim(),
   price: q.price || { min: 1400, currency: 'UAH' },
   location: q.location,
   categories: q.categories || ['Пригоди'],
