@@ -77,20 +77,44 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="uk" className="bg-brand-dark text-white scroll-smooth">
+    <html lang="uk" className="bg-[#000000] text-white scroll-smooth">
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} ${robotoCondensed.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} ${robotoCondensed.variable} font-sans antialiased bg-[#000000] text-white relative min-h-screen selection:bg-[#fb7b04] selection:text-white`}>
+        {/* Fixed Spiderweb Pattern Background: Variant 1 (Polygonal), 15% opacity, 300px scale, screen blend */}
+        <div
+          className="fixed inset-0 pointer-events-none z-0"
+          style={{
+            backgroundImage: "url('/images/web-pattern-1.png')",
+            backgroundSize: '300px',
+            backgroundRepeat: 'repeat',
+            opacity: 0.15,
+            mixBlendMode: 'screen',
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Ambient center warm backglow */}
+        <div 
+          className="fixed top-1/4 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] pointer-events-none z-0"
+          style={{
+            background: 'radial-gradient(ellipse at center, rgba(251, 123, 4, 0.08) 0%, transparent 70%)',
+          }}
+          aria-hidden="true"
+        />
+
         <LanguageProvider>
-          <Header />
-          <main className="min-h-screen">
-            {children}
-          </main>
-          <Footer />
+          <div className="relative z-10 flex flex-col min-h-screen">
+            <Header />
+            <main className="flex-grow">
+              {children}
+            </main>
+            <Footer />
+          </div>
         </LanguageProvider>
       </body>
     </html>

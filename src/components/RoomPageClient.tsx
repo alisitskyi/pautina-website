@@ -40,7 +40,7 @@ export default function RoomPageClient({ quest, initialSlots }: Props) {
       : quest.location.area;
 
   return (
-    <div className="bg-brand-dark pt-8 pb-24 text-white min-h-screen">
+    <div className="bg-transparent pt-8 pb-24 text-white min-h-screen">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-xs text-gray-400 mb-8 uppercase tracking-widest font-semibold">

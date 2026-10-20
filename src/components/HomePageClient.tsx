@@ -16,9 +16,9 @@ export default function HomePageClient({ initialQuests }: Props) {
   const promo = t('homePromo');
 
   return (
-    <div className="flex flex-col bg-[#000000] min-h-screen text-white">
+    <div className="flex flex-col bg-transparent min-h-screen text-white">
       {/* ================= Authentic Hero / Intro Section ================= */}
-      <section className="bg-[#000000] pt-6 sm:pt-8 pb-2 text-center">
+      <section className="bg-transparent pt-6 sm:pt-8 pb-2 text-center">
         <div className="container mx-auto px-4 max-w-5xl">
           {/* Subtitle with Underline */}
           <div className="mb-4">
@@ -42,7 +42,7 @@ export default function HomePageClient({ initialQuests }: Props) {
       </section>
 
       {/* ================= Quests Catalog Section ================= */}
-      <section id="quests" className="pb-24 bg-[#000000]">
+      <section id="quests" className="pb-24 bg-transparent">
         <div className="container mx-auto px-4 max-w-7xl">
           <QuestCatalog initialQuests={initialQuests} />
         </div>
@@ -106,7 +106,7 @@ export default function HomePageClient({ initialQuests }: Props) {
       </section>
 
       {/* Gift Certificates Banner */}
-      <section className="py-20 bg-brand-dark">
+      <section className="py-20 bg-transparent">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="bg-gradient-to-r from-neutral-900 to-black border border-[#fb7b04]/30 rounded-3xl p-8 md:p-14 relative overflow-hidden shadow-2xl">
             <div className="max-w-2xl relative z-10">
@@ -133,7 +133,7 @@ export default function HomePageClient({ initialQuests }: Props) {
       </section>
 
       {/* Locations Section */}
-      <section id="locations" className="py-20 bg-neutral-950 border-t border-white/10">
+      <section id="locations" className="py-20 bg-black/40 backdrop-blur-sm border-t border-white/10">
         <div className="container mx-auto px-4 max-w-7xl">
           <div className="text-center max-w-2xl mx-auto mb-14">
             <span className="text-[#fb7b04] text-xs uppercase font-extrabold tracking-widest block mb-2">{promo.locTag}</span>

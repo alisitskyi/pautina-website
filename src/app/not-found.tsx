@@ -3,7 +3,7 @@ import { Compass, Home, Phone } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-brand-dark px-4 text-white">
+    <div className="min-h-[80vh] flex items-center justify-center bg-transparent px-4 text-white">
       <div className="max-w-md w-full text-center p-8 bg-neutral-900 border border-white/10 rounded-3xl shadow-2xl">
         <div className="w-16 h-16 rounded-2xl bg-brand-red/20 text-brand-red flex items-center justify-center mx-auto mb-6">
           <Compass className="w-8 h-8 animate-spin" style={{ animationDuration: '6s' }} />

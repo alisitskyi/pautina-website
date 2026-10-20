@@ -97,7 +97,7 @@ export default function BirthdayPage() {
   ];
 
   return (
-    <div className="bg-brand-dark min-h-screen text-white pt-10 pb-24">
+    <div className="bg-transparent min-h-screen text-white pt-10 pb-24">
       <div className="container mx-auto px-4 max-w-6xl">
         {/* Hero */}
         <div className="text-center max-w-3xl mx-auto mb-16">

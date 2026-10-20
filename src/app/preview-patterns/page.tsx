@@ -6,9 +6,9 @@ import Link from 'next/link';
 import { Users, Clock, Sparkles, MapPin, Calendar, ArrowRight } from 'lucide-react';
 
 export default function PreviewPatternsPage() {
-  const [selectedPattern, setSelectedPattern] = useState<'1' | '2' | '3' | 'split'>('3');
-  const [opacity, setOpacity] = useState<number>(45);
-  const [scale, setScale] = useState<number>(550);
+  const [selectedPattern, setSelectedPattern] = useState<'1' | '2' | '3' | 'split'>('1');
+  const [opacity, setOpacity] = useState<number>(15);
+  const [scale, setScale] = useState<number>(300);
   const [blendMode, setBlendMode] = useState<'screen' | 'normal'>('screen');
 
   const getPatternUrl = (id: '1' | '2' | '3') => {

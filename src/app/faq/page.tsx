@@ -88,7 +88,7 @@ export default function FAQPage() {
   const faqs = language === 'en' ? faqsEn : faqsUa;
 
   return (
-    <div className="bg-brand-dark min-h-screen text-white pt-10 pb-24">
+    <div className="bg-transparent min-h-screen text-white pt-10 pb-24">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#fb7b04]/20 border border-[#fb7b04]/40 text-[#fb7b04] text-xs font-bold uppercase tracking-widest mb-4">

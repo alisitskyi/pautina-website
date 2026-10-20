@@ -18,7 +18,7 @@ export default function LocationsPageClient({ initialQuests }: Props) {
   const shevchenkoQuests = initialQuests.filter((q) => q.location.id === 'loc-shevchenko');
 
   return (
-    <div className="bg-brand-dark min-h-screen text-white pt-10 pb-24">
+    <div className="bg-transparent min-h-screen text-white pt-10 pb-24">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-[#fb7b04] text-xs uppercase font-extrabold tracking-widest block mb-2">
